@@ -1,0 +1,51 @@
+fun main() {
+    println("Witaj w kalkulatorze!")
+    println("Wybierz operację do wykonania:")
+    println("1 - Dodawanie")
+    println("2 - Odejmowanie")
+    println("3 - Mnożenie")
+    println("4 - Dzielenie")
+    println("0 - Wyjście")
+
+    while (true) {
+        print("Wprowadź numer operacji: ")
+        val operation = readLine()?.toIntOrNull()
+
+        if (operation == 0) {
+            println("Szaraut Nara randi")
+            break
+        }
+        if (operation !in 1..4) {
+            println("Nieprawidłowy wybór. Spróbuj ponownie.")
+            continue
+        }
+
+        print("Wprowadź pierwszą liczbę: ")
+        val number1 = readLine()?.toDoubleOrNull()
+        print("Wprowadź drugą liczbę: ")
+        val number2 = readLine()?.toDoubleOrNull()
+
+        if (number1 == null || number2 == null) {
+            println("Nieprawidłowe wartości liczbowe. Spróbuj ponownie.")
+            continue
+        }
+
+        val result = when (operation) {
+            1 -> number1 + number2
+            2 -> number1 - number2
+            3 -> number1 * number2
+            4 -> {
+                if (number2 == 0.0) {
+                    println("Nie można dzielić przez zero!")
+                    continue
+                } else {
+                    number1 / number2
+                }
+            }
+            else -> null
+        }
+
+        println("Wynik: $result")
+        println("Wybierz kolejną operację lub wprowadź 0, aby zakończyć.")
+    }
+}
